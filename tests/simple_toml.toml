@@ -1,0 +1,15 @@
+# This file is encoding by utf-8
+[family]
+mother="allen"
+mother_age=18
+pets=["dog","cat"]
+	[[family.kids]]
+	 name="child1"
+	 age=1
+	[[family.kids]]
+	name="child2"
+	age = 2
+# cannot have same, will error
+#[family]
+#mother="amy"
+
