@@ -2,14 +2,53 @@
 [family]
 mother="allen"
 mother_age=18
+empty_key1='' # value is "''"
+empty_key2="" # value is "\"\""  #https://github.com/toml-lang/toml/issues/83
+path="/dasdfa/"  # notice the head and tail's "
+empty_key4="''"
+empty_key5 = '""'
+#empty_key6 = '\'\'' # error
+empty_key7='''""'''
+empty_key8=nil
+empty_key9=0
+empty_key10="\"\""
+empty_key11= " "
+empty_key12=null
+multi_line='''this_is\
+hello\
+world'''
+
 pets=["dog","cat"]
-	[[family.kids]]
+
+[[family.kids]]
 	 name="child1"
 	 age=1
-	[[family.kids]]
+[[family.kids]]
 	name="child2"
 	age = 2
+
+	
 # cannot have same, will error
 #[family]
 #mother="amy"
 
+family.mother="allen"
+#family.mother_age=18
+#family.empty_key1=''
+#family.empty_key2=""
+#family.path="/dasdfa/"
+#family.empty_key4="''"
+#family.empty_key5='""'
+#family.empty_key7='''""'''
+#family.empty_key8=nil
+#family.empty_key9=0
+#family.empty_key10="\"\""
+#family.empty_key11=" "
+#family.empty_key12=null
+#family.multi_line='''this_is\
+#hello\
+#world'''
+#family.pets=
+#family.kids=
+#family.perts=["dog","cat",]
+#family.kids=[{name="child1", age=1},{name="child2", age=2},]

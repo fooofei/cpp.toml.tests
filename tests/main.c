@@ -42,16 +42,18 @@ int main()
             toml_table_t * ini_family = toml_table_in(conf_root, "family");
             if (ini_family)
             {
-                const char * s = toml_raw_in(ini_family, "mother");
-                if (s)
+                const char * key = 0;
+                const char * value = 0;
+
+                for (i=0;;i+=1)
                 {
-                    printf("family.mother=%s\n", s);
+                    key = toml_key_in(ini_family, i);
+                    if (!key) break;
+                    value = toml_raw_in(ini_family, key);
+                    if (!value) value = "";
+                    printf("family.%s=%s\n", key, value);
                 }
-                s = toml_raw_in(ini_family, "mother_age");
-                if (s)
-                {
-                    printf("family.mother_age=%s\n", s);
-                }
+
                 
                 tmp_ar = toml_array_in(ini_family, "pets");
                 if (tmp_ar)
@@ -59,12 +61,12 @@ int main()
                     printf("family.perts=[");
                     for (i=0;;i+=1)
                     {
-                        s = toml_raw_at(tmp_ar, i);
-                        if (!s)
+                        value = toml_raw_at(tmp_ar, i);
+                        if (!value)
                         {
                             break;
                         }
-                        printf("%s,",s);
+                        printf("%s,",value);
 
                     }
                     printf("]\n");
@@ -79,15 +81,14 @@ int main()
                         tmp_tb = toml_table_at(tmp_ar, i);
                         if (!tmp_tb)break;
 
-                        s = toml_raw_in(tmp_tb, "name");
-                        printf("{name=%s, ", s);
-                        s = toml_raw_in(tmp_tb, "age");
-                        printf("age=%s},", s);
+                        value = toml_raw_in(tmp_tb, "name");
+                        printf("{name=%s, ", value);
+                        value = toml_raw_in(tmp_tb, "age");
+                        printf("age=%s},", value);
                     }
 
                     printf("]\n");
                 }
-
             }
 
             toml_free(conf_root);

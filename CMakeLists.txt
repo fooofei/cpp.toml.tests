@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 project(tomlc99)
-
+# this file is for ./tomlc99 https://github.com/fooofei/tomlc99 https://github.com/cktan/tomlc99
 
 set(binary_name toml)
 
