@@ -1,4 +1,6 @@
 # This file is encoding by utf-8
+
+
 [family]
 mother="allen"
 mother_age=18
@@ -32,7 +34,10 @@ pets=["dog","cat"]
 #[family]
 #mother="amy"
 
-family.mother="allen"
+
+## the output
+
+#family.mother="allen"
 #family.mother_age=18
 #family.empty_key1=''
 #family.empty_key2=""

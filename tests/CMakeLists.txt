@@ -14,8 +14,8 @@ endif()
 
 set(Source_files 
 	${CMAKE_CURRENT_SOURCE_DIR}/main.c
-	${CMAKE_CURRENT_SOURCE_DIR}/crt_dbg_leak.c
-	${CMAKE_CURRENT_SOURCE_DIR}/crt_dbg_leak.h
+	${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common/crt_dbg_leak.c
+	${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common/crt_dbg_leak.h
 
 	)
 

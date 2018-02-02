@@ -36,6 +36,10 @@ int main()
 
         conf_root = toml_parse_file(f, errbuf, err_buf_size);
 
+        if (!conf_root) {
+            printf("file is empty\n");
+        }
+
         if (conf_root)
         {
 
