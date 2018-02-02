@@ -13,7 +13,7 @@
 
 
 #include "toml.h"
-
+#include "crt_dbg_leak.h"
 
 
 int main()
@@ -27,6 +27,10 @@ int main()
 
     enum{err_buf_size=0x10,};
     char errbuf[err_buf_size];
+
+    struct _crt_dbg_leak cdl;
+    memset(&cdl, 0, sizeof(cdl));
+    crt_dbg_leak_lock(&cdl);
 
 
     f = fopen("../simple_toml.toml", "rb");
@@ -102,6 +106,8 @@ int main()
         fclose(f);
         f = 0;
     }
+
+    crt_dbg_leak_unlock(&cdl);
 
     return 0;
 }

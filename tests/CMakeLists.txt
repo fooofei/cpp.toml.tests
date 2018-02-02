@@ -18,8 +18,12 @@ set(Source_files
 	${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common/crt_dbg_leak.h
 
 	)
+set(common_c_common ${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common)
+
+
 
 add_executable(${binary_name} ${Source_files})
+target_include_directories(${binary_name} PRIVATE ${common_c_common})
 
 source_group(files FILES ${Source_files})
 
