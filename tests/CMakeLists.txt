@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 project(tomlc99_test)
 
 
-set(binary_name toml_test)
+
 
 if(APPLE)
     # no warning
@@ -10,31 +10,32 @@ if(APPLE)
     set(CMAKE_MACOSX_RPATH 0)
 endif()
 
+if (NOT TARGET toml)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../  build_toml)
+endif ()
 
-
-set(Source_files 
-	${CMAKE_CURRENT_SOURCE_DIR}/main.c
-	${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common/crt_dbg_leak.c
-	${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common/crt_dbg_leak.h
-
-	)
 set(common_c_common ${CMAKE_CURRENT_SOURCE_DIR}/../c_cpp_common)
 
 
 
-add_executable(${binary_name} ${Source_files})
-target_include_directories(${binary_name} PRIVATE ${common_c_common})
 
-source_group(files FILES ${Source_files})
-
+set(self_binary_name toml_test)
+set(self_test_sources 
+	${CMAKE_CURRENT_SOURCE_DIR}/main.c
+	${common_c_common}/crt_dbg_leak.c
+	${common_c_common}/crt_dbg_leak.h
+	)
+add_executable(${self_binary_name} ${self_test_sources})
+target_include_directories(${self_binary_name} PRIVATE ${common_c_common})
+source_group(files FILES ${self_test_sources})
 if(WIN32)
-	target_compile_options(${binary_name} PRIVATE /source-charset:utf-8 /execution-charset:utf-8)
+	target_compile_options(${self_binary_name} PRIVATE /source-charset:utf-8 /execution-charset:utf-8)
 else()
-
 endif()
+target_link_libraries(${self_binary_name} toml)
 
 
-if (NOT TARGET toml)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../  build_toml)
-endif ()
-target_link_libraries(${binary_name} toml)
+set(self_binary_toml_cat toml_cat)
+add_executable(${self_binary_toml_cat} "${CMAKE_CURRENT_SOURCE_DIR}/../tomlc99/toml_cat.c")
+target_include_directories(${self_binary_toml_cat} PRIVATE ${common_c_common})
+target_link_libraries(${self_binary_toml_cat} toml)
