@@ -39,3 +39,9 @@ set(self_binary_toml_cat toml_cat)
 add_executable(${self_binary_toml_cat} "${CMAKE_CURRENT_SOURCE_DIR}/../tomlc99/toml_cat.c")
 target_include_directories(${self_binary_toml_cat} PRIVATE ${common_c_common})
 target_link_libraries(${self_binary_toml_cat} toml)
+
+
+set(self_binary_unitest_utf8 unitest_utf8)
+add_executable(${self_binary_unitest_utf8} "${CMAKE_CURRENT_SOURCE_DIR}/../tomlc99/unittest/t1.c")
+target_include_directories(${self_binary_unitest_utf8} PRIVATE ${common_c_common})
+target_link_libraries(${self_binary_unitest_utf8} toml)
